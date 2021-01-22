@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+
+</head>
+<body bgcolor="#F0FFFF">
+
+<div id="header" >
+        <h5 align="right"> {% firstof user.get_short_name user.get_username %} <a href="/accounts/login/">Выйти</a></h5>
+        <h1 align="left"><font face="Century gothic" size="+5" color="black">Авторизация</font><h1>
+        <hr align="left" width="25%" size="3" color="#2F4F4F"/>
+        <h4 align="left"><a href = "{% url 'home' %}">Вернуться назад</a></h4>
+</div>
+
+<p align="left"><button class = 'button' onclick="window.location.href = 'http://127.0.0.1:8000/admin/';">Вход для администратора..</button></p>
+<br>
+
+  <form method="post" action="{% url 'login' %}" align="left">
+    {% csrf_token %}
+    <table align="left">
+      <tr>
+        <td> {{ form.username.label_tag }} </td>
+        <td> {{ form.username }} </td>
+      </tr>
+      <tr>
+        <td> {{ form.password.label_tag }} </td>
+        <td> {{ form.password }} </td>
+      </tr>
+    </table>
+    <input class = 'button' type="submit" name="login" value="login" />
+    <input class = 'myfield' type="hidden" name="next" value="{{ next }}" />
+  </form>
+</body>
+
+</html>
